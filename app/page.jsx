@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import MyBoxes from '@/components/canvas/myBoxes'
 import MugModel from '@/components/models3d/MugModel'
 
 const Logo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Logo), { ssr: false })
@@ -26,6 +25,7 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
   ),
 })
 const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
+
 export default function Page() {
   return (
     <>
@@ -43,7 +43,8 @@ export default function Page() {
               <MugModel />
               {/* <Mug route='/blob' scale={0.6} position={[0, 0, 0]} /> */}
               {/* <Logo route='/blob' scale={0.6} position={[0, 0, 0]} /> */}
-              <Common />
+              <Common color={'lightgreen'} />
+
             </Suspense>
           </View>
         </div>
