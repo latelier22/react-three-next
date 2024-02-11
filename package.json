@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "next lint --fix --dir app",
     "dev": "next dev",
-    "build": "chmod u+r+x setup.sh && ./setup.sh && next build",
+    "build": "next build",
     "analyze": "ANALYZE=true next build",
     "start": "next start"
   },

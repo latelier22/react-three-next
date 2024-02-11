@@ -23,18 +23,6 @@ const nextConfig = {
 
 const KEYS_TO_OMIT = ['webpackDevMiddleware', 'configOrigin', 'target', 'analyticsId', 'webpack5', 'amp', 'assetPrefix']
 
-if (
-  process.env.LD_LIBRARY_PATH == null ||
-  !process.env.LD_LIBRARY_PATH.includes(
-    `${process.env.PWD}/node_modules/canvas/build/Release:`,
-  )
-) {
-  process.env.LD_LIBRARY_PATH = `${process.env.PWD
-    }/node_modules/canvas/build/Release:${process.env.LD_LIBRARY_PATH || ''}`;
-}
-
-
-
 module.exports = (_phase, { defaultConfig }) => {
   const plugins = [[withPWA], [withBundleAnalyzer, {}]]
 
