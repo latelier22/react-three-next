@@ -36,17 +36,15 @@ function MugModel(props) {
     })
 
     return (
-        // DESCRIPTION DU MODELE
-
         <group scale={10} rotation={[0, 1.812, 0]} position={[0, -0.5, 0]} ref={group} {...props} dispose={null}>
-      //ANSE //
+            {/* //ANSE // */}
             <group rotation={[0, -0.412, 0]}>
                 <mesh castShadow receiveShadow geometry={nodes.Exterior.geometry} material={materials['white-material']} />
                 <mesh castShadow receiveShadow geometry={nodes.Cylinder003_1.geometry} material={materials['color-material']} />
             </group>
-      // EXTERIEUR
+            {/* // EXTERIEUR */}
             <mesh castShadow receiveShadow geometry={nodes.Exterior.geometry} material={materials['white-material']} rotation={[0, -0.412, 0]} />
-      // ZONE D'IMPRESSION DU MODEL
+            {/* // ZONE D'IMPRESSION DU MODEL */}
             <mesh
                 rotation={[0, -0.412, 0]}
                 castShadow
@@ -59,7 +57,7 @@ function MugModel(props) {
                     <canvasTexture attach="map" image={canvas} />
                 </meshStandardMaterial>
             </mesh>
-      // INTERIEUR
+            {/* // INTERIEUR */}
             <mesh castShadow receiveShadow geometry={nodes.Interior.geometry} material={materials['color-material']} rotation={[0, -0.412, 0]} />
         </group>
     )
