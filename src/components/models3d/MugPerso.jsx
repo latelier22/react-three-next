@@ -22,9 +22,7 @@ function MugModel(props) {
     texture.anisotropy = gl.capabilities.getMaxAnisotropy()
     texture.needsUpdate = true
 
-    /* ANIMATION */
-
-    console.log(props.animationSpeed)
+    // animation
 
     useFrame((state, delta) => {
         if (props.animation) {
