@@ -12,7 +12,7 @@ function MugModel(props) {
 
     /* CANVAS POUR DESSINER TEXTURE*/
 
-    var canvas = document.getElementsByTagName('canvas')[0], ctx, texture
+    let canvas = document.getElementsByTagName('canvas')[0], ctx, texture
     ctx = canvas.getContext('2d')
 
     // CREATION TEXTURE //
