@@ -33,7 +33,7 @@ export default function Page() {
         {/* jumbo */}
         <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
           <p className='w-full uppercase'>Next + React Three Fiber</p>
-          <h1 className='my-4 text-5xl font-bold leading-tight'>Next 3D Starter</h1>
+          <h1 className='my-4 text-5xl font-bold leading-tight'>C'est mon mug</h1>
           <p className='mb-8 text-2xl leading-normal'>A minimalist starter for React, React-three-fiber and Threejs.</p>
         </div>
 
@@ -44,7 +44,6 @@ export default function Page() {
               {/* <Mug route='/blob' scale={0.6} position={[0, 0, 0]} /> */}
               {/* <Logo route='/blob' scale={0.6} position={[0, 0, 0]} /> */}
               <Common color={'lightgreen'} />
-
             </Suspense>
           </View>
         </div>
@@ -69,16 +68,17 @@ export default function Page() {
         </div>
       </div>
 
-
-
-
       <div className='mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row  lg:w-4/5'>
         {/* first row */}
-        <div className='relative h-72 w-full py-6 sm:w-1/2 md:my-12 md:mb-40'> {/* Ajustement de la hauteur ici */}
+        <div className='relative h-72 w-full py-6 sm:w-1/2 md:my-12 md:mb-40'>
+          {' '}
+          {/* Ajustement de la hauteur ici */}
           <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>MUGd</h2>
           <p className='mb-8 text-gray-600'>Drag, scroll, pinch, and rotate the canvas to explore the 3D scene.</p>
         </div>
-        <div className='relative my-12 h-72 w-full py-6 sm:w-1/2 md:mb-40'> {/* Ajustement de la hauteur ici */}
+        <div className='relative my-12 h-72 w-full py-6 sm:w-1/2 md:mb-40'>
+          {' '}
+          {/* Ajustement de la hauteur ici */}
           <View orbit className='relative h-full  sm:h-48 sm:w-full'>
             <Suspense fallback={null}>
               <MugModel />
