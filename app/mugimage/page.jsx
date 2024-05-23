@@ -1,10 +1,10 @@
 'use client'
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { fabric } from 'fabric';
-import MugPerso from '@/components/models3d/MugPerso'
-import dynamic from 'next/dynamic'
+import MugPerso from '@/components/models3d/MugPerso';
+import dynamic from 'next/dynamic';
 
-const Blob = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Blob), { ssr: false })
+const Blob = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Blob), { ssr: false });
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => (
@@ -19,49 +19,48 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
       </svg>
     </div>
   ),
-})
-const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
+});
+const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false });
 
-const FabricTest = () => {
+const FabricTest = ({ onReady }) => {
   const canvasRef = useRef(null);
   const fabricCanvasRef = useRef(null);
 
   useEffect(() => {
-    // Only initialize the Fabric canvas if it hasn't been initialized yet
     if (!fabricCanvasRef.current) {
       fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {
         height: 800,
-        width: 800,
-        backgroundColor: 'red',
+        width: 2000,
+        backgroundColor: 'white',
+      });
+
+      fabric.Image.fromURL('/mockup.png', (img) => {
+        img.set({
+          left: 0,
+          top: 0,
+          scaleX: 0.75,
+          scaleY: 0.75,
+        });
+        fabricCanvasRef.current.add(img);
+        fabricCanvasRef.current.renderAll();
+        if (onReady) onReady();
       });
     }
-  }, []);
-
-  const addRect = () => {
-    const rect = new fabric.Rect({
-      height: 280,
-      width: 200,
-      fill: 'red',
-      selectable: true,
-      hasControls: true,
-    });
-    fabricCanvasRef.current.add(rect);
-    fabricCanvasRef.current.renderAll();
-  };
+  }, [onReady]);
 
   return (
-    <div>
+    <div style={{ position: 'absolute', top: '-10000px', left: '-10000px' }}>
       <canvas id="canvas" ref={canvasRef} />
-      <button onClick={addRect}>Rectangle</button>
     </div>
   );
-}
+};
 
-export default function Page() {
+const Page = () => {
+  const [isCanvasReady, setIsCanvasReady] = useState(false);
 
   return (
     <>
-      <FabricTest />
+      <FabricTest onReady={() => setIsCanvasReady(true)} />
       <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
         <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
           <p className='w-full uppercase'>Next + React Three Fiber</p>
@@ -70,17 +69,15 @@ export default function Page() {
         </div>
       </div>
 
-      <View orbit className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
-        {/* <Blob /> */}
-        <MugPerso />
-        <Common />
-      </View>
+      {isCanvasReady && (
+        <View orbit className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
+          {/* <Blob /> */}
+          <MugPerso />
+          <Common />
+        </View>
+      )}
     </>
-  )
-}
+  );
+};
 
-
-
-
-
-
+export default Page;
