@@ -21,6 +21,7 @@ function MugModel(props) {
     texture.flipY = false // Vous pouvez essayer true si nécessaire.
     texture.anisotropy = gl.capabilities.getMaxAnisotropy()
     texture.needsUpdate = true
+    // texture.crossOrigin = null
 
     // animation
 

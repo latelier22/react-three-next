@@ -9,6 +9,43 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 
 const nextConfig = {
   // ...
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://vps.latelier22.fr:1336/api/:path*', // Redirige toutes les requêtes '/api/*' vers votre API
+      },
+    ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "marcel-de-mayotte.latelier22.fr",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "admin.marcel-de-mayotte.fr",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.react-photo-album.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "vps.latelier22.fr",
+        pathname: "/**",
+      }
+    ],
+  },
   reactStrictMode: false, // Désactiver reactStrictMode
   webpack: (config) => {
     config.externals.push({
